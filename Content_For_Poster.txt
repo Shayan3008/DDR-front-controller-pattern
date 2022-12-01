@@ -1,0 +1,19 @@
+What is front controller pattern?
+
+The front controller design pattern means that all requests that come for a resource in an application will be handled by a single handler and then dispatched to the appropriate handler for that type of request. The front controller may use other helpers to achieve the dispatching mechanism.
+
+Advantages of Front controller pattern:
+Centralized control : Front controller handles all the requests to the Web application. This implementation of centralized control that avoids using multiple controllers is desirable for enforcing application-wide policies such as users tracking and security.
+Thread-safety : A new command object arises when receiving a new request and the command objects are not meant to be thread-safe. Thus, it will be safe in the command classes. Though safety is not guaranteed when threading issues are gathered, codes that act with the command are still thread safe.
+
+Disadvantages of Front controller pattern:
+It is not possible to scale an application using a front controller.
+Performance is better if you deal with a single request uniquely.
+
+Components of Front controller pattern:
+
+Front Controller - Single handler for all kinds of requests coming to the application (either web based/ desktop based).
+
+Dispatcher - Front Controller may use a dispatcher object which can dispatch the request to corresponding specific handler.
+
+View - Views are the object for which the requests are made.
