@@ -1,0 +1,49 @@
+.Shoppingimage{
+    width: 462px;  
+}
+.login{
+    margin: 0;
+    padding: 0;
+}
+.Loginleft {
+    width: 50%;
+    float: left;
+   
+}  
+.Loginright {
+    width: 50%;
+    float: left;  
+    padding-right: 150px;
+    padding-left: 150x;
+}  
+
+.Logo{
+    width: 118.52px ;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-bottom: 60px;
+}
+
+.Loginright>p{
+    margin-bottom: 5px;
+}
+.Loginright>h2{
+    margin-bottom: 20px;
+}
+.Loginright>input{
+    width: 10px;
+}
+.loginbutton{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.loginbutton:hover {
+    color: rgb(255, 255, 255);
+  }
+.signup{
+    align-items: center;
+    padding-top: 20px;
+}
+.linktosignup{
+    text-decoration: none;
+}
