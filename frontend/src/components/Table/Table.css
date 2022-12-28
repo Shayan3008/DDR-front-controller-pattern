@@ -1,0 +1,109 @@
+.Table{
+    position: absolute;
+        height: 380px;
+        left: 84px;
+        right: 35px;
+        top: 140px;
+        background: #ffffff;
+        border-radius: 10px 10px 10px 10px;
+
+        
+    }
+
+Table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+
+    
+  }
+  thead {
+    
+    font-weight: bold;
+   
+
+  }
+  
+  Table td, Table th {
+    background-color: #ffffff;
+
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+   
+  }
+ 
+  th, td {
+    border-bottom: 2px solid #F2F8FF;
+  }
+
+ 
+  
+  Table tr:hover {background-color: rgb(197, 56, 56);
+  width: 100%;}
+  
+  Table th {
+    
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+   
+    color: white;
+    width: 100%;
+  }
+  Table td {
+    text-align: center;
+
+  }
+  .PurposetagRent{
+    display: flex;
+    background: #09886F;
+    border: 2px #09886F;
+    border-radius: 23px;
+    color: #ffffff;
+   
+    width: 100%;
+    height: 25px;
+    align-items: center;
+  
+  }
+  .PurposetagSell{
+    display: flex;
+    background: #109CF1;
+    border: 2px #109CF1;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 75px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  .StatustagNotAvailable{
+    display: flex;
+    background: #921919;
+    border: 2px #921919;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 110px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  .StatustagAvailable{
+    display: flex;
+    background: #09886F;
+    border: 2px #09886F;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 75px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  button{
+    justify-content: center;
+    align-items: center;
+  }
+  .edit,.delete{
+    padding: 10px;
+  }
