@@ -66,9 +66,9 @@ app.post('/mail', async (req, res) => {
 
 app.get('/write', (req, res) => {
   console.log('Hello')
-  const json = [{ 'message': 'This is message' }]
-  file.readFile('data.json', (err, data) => {
-    res.send(JSON.parse(data))
+  const json = [{ 'catId': 1,"name":"Shoes"},{'catId': 2,"name":"Shirts" }]
+  jsonFile.writeFile('./static/category.json',JSON.stringify(json) ,(err) => {
+    res.send(json)
   })
 })
 
