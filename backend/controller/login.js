@@ -1,8 +1,9 @@
 const oracle = require('../DATABASE/oraclequery')
 const connection = require('../DATABASE/oracleConnection')
 const category = require('../backend_models/category')
-
 const users = require('../backend_models/user')
+const json = require('jsonfile')
+const file = require('fs')
 const login = async (req, res) => {
    try {
       const { user, pass } = req.body
@@ -30,31 +31,42 @@ const login = async (req, res) => {
 
 const signUp = async (req, res) => {
    try {
-      let userId
-      const { Fname, Lname, Password, Email, Phone, Address } = req.body
-      console.log(req.body)
-      const query = await connection()
-      const success2 = await query.execute('INSERT INTO USERS(FNAME,LNAME,phone,EMAIL,PASSWORD,ADDRESS) VALUES(:Fname,:Lname,:Phone,:Email,:Password,:address)', {
-         Fname: Fname,
-         Lname: Lname,
-         Phone: Phone,
-         Email: Email,
-         Password: Password,
-         address: Address
-      })
-      const tempRows = await oracle('SELECT * FROM USERS')
-      if (tempRows.rows.length == 0)
-         userId = 1
-      else
-         userId = tempRows.rows[tempRows.rows.length - 1][0]
+      // let userId
+      // const { Fname, Lname, Password, Email, Phone, Address } = req.body
+      // console.log(req.body)
+      // const query = await connection()
+      // const success2 = await query.execute('INSERT INTO USERS(FNAME,LNAME,phone,EMAIL,PASSWORD,ADDRESS) VALUES(:Fname,:Lname,:Phone,:Email,:Password,:address)', {
+      //    Fname: Fname,
+      //    Lname: Lname,
+      //    Phone: Phone,
+      //    Email: Email,
+      //    Password: Password,
+      //    address: Address
+      // })
+      // const tempRows = await oracle('SELECT * FROM USERS')
+      // if (tempRows.rows.length == 0)
+      //    userId = 1
+      // else
+      //    userId = tempRows.rows[tempRows.rows.length - 1][0]
 
-      let user = new users(userId, Lname, Fname, Phone, Email, Password, Address)
-      let temp = []
-      temp.push(user)
-      let json = JSON.stringify(temp)
-      res.send(json)
+      // let user = new users(userId, Lname, Fname, Phone, Email, Password, Address)
+      // let temp = []
+      // temp.push(user)
+      // let json = JSON.stringify(temp)
+      // res.send(json)
+      json.readFile('./static/user.json', (err, data) => {
+         let data1 = []
+         if (data)
+            data1 = JSON.parse(data)
+         console.log(req.body)
+         data1.push(req.body)
+         json.writeFile('./static/user.json', JSON.stringify(data1), (err) => {
+            if (!err) res.send(data1)
+         })
+      })
+
    } catch (error) {
-      res.status(400).send({'msg':'SERVER DOWN TRY AGAIN LATER'})
+      res.status(400).send({ 'msg': 'SERVER DOWN TRY AGAIN LATER' })
    }
 
 }
