@@ -4,12 +4,12 @@ const item = require('../backend_models/item')
 
 const getItem = async (req, res) => {
     try {
-        const temp = []
-        const sucess = await oracle("SELECT * FROM PRODUCT")
-        for (var i in sucess.rows)
-            temp.push(new item(sucess.rows[i][0], sucess.rows[i][1], sucess.rows[i][2], sucess.rows[i][3], sucess.rows[i][4], 1, sucess.rows[i][5]))
-        const json = JSON.stringify(temp)
-        res.send(json)
+        // const temp = []
+        // const sucess = await oracle("SELECT * FROM PRODUCT")
+        // for (var i in sucess.rows)
+        //     temp.push(new item(sucess.rows[i][0], sucess.rows[i][1], sucess.rows[i][2], sucess.rows[i][3], sucess.rows[i][4], 1, sucess.rows[i][5]))
+        // const json = JSON.stringify(temp)
+        // res.send(json)
     } catch (error) {
         console.log(error)
         res.status(400)

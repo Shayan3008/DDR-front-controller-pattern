@@ -5,27 +5,39 @@ const users = require('../backend_models/user')
 const json = require('jsonfile')
 const file = require('fs')
 const login = async (req, res) => {
-   try {
-      const { user, pass } = req.body
-      const query = await connection()
-      const success2 = await query.execute('SELECT * FROM USERS WHERE EMAIL = :email AND PASSWORD = :pass', {
-         email: user,
-         pass: pass
-      })
-      let temp = []
-      if (success2.rows.length == 0)
-         res.status(404).send({ 'msg': "NO USER AVAILABLE" })
-      else {
-         for (var i in success2.rows)
-            temp.push(new users(success2.rows[i][0], success2.rows[i][1], success2.rows[i][2], success2.rows[i][3], success2.rows[i][4], success2[i][5]))
+   // try {
+   //    const { user, pass } = req.body
+   //    const query = await connection()
+   //    const success2 = await query.execute('SELECT * FROM USERS WHERE EMAIL = :email AND PASSWORD = :pass', {
+   //       email: user,
+   //       pass: pass
+   //    })
+   //    let temp = []
+   //    if (success2.rows.length == 0)
+   //       res.status(404).send({ 'msg': "NO USER AVAILABLE" })
+   //    else {
+   //       for (var i in success2.rows)
+   //          temp.push(new users(success2.rows[i][0], success2.rows[i][1], success2.rows[i][2], success2.rows[i][3], success2.rows[i][4], success2[i][5]))
 
-         res.status(200).send(JSON.stringify(temp))
+   //       res.status(200).send(JSON.stringify(temp))
+   //    }
+
+   // } catch (error) {
+   //    console.log(error)
+   //    res.status(400).end()
+   // }
+   const { user, pass } = req.body
+   json.readFile('./static/user.json', (err, data) => {
+      let data1 = []
+      if (data) {
+         data1 = JSON.parse(data)
+         for (var i = 0; i < data1.length; i++) {
+            if (data1[i].name === user && data1[i].password === pass)
+               res.status(200).send(data1[i].id)
+         }
       }
-
-   } catch (error) {
-      console.log(error)
-      res.status(400).end()
-   }
+   })
+   res.status(404).send('Failed')
 
 }
 
@@ -58,10 +70,14 @@ const signUp = async (req, res) => {
          let data1 = []
          if (data)
             data1 = JSON.parse(data)
+         if (data1.length === 0)
+            req.body.id = 1
+         else
+            req.body.id = data1[data1.length - 1].id + 1
          console.log(req.body)
          data1.push(req.body)
          json.writeFile('./static/user.json', JSON.stringify(data1), (err) => {
-            if (!err) res.send(data1)
+            if (!err) res.send('done')
          })
       })
 
