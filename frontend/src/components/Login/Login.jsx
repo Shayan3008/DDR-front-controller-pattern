@@ -26,7 +26,7 @@ export default function Login() {
             <input type="password" class="form-control" id="adminpassword" placeholder="*********" />
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
-            <button class="btn btn-primary" type="button"><Link to="/advertisment" className='loginbutton'>Login</Link></button>
+            <button class="btn btn-primary" type="button"><Link to="/user" className='loginbutton'>Login</Link></button>
             </div>
             <div className="signup">Don't have account? <Link to="/signup" className='linktosignup' >Sign Up</Link> </div>
         </div>

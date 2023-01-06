@@ -30,7 +30,7 @@ export default function Signup() {
             <input type="password" class="form-control" id="adminpassword" placeholder="*********" />
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
-            <button class="btn btn-primary" type="button"><Link to="/advertisment" className='Signupbutton'>Sign up</Link></button>
+            <button class="btn btn-primary" type="button"><Link to="/user" className='Signupbutton'>Sign up</Link></button>
             </div>
             <div className="signin">Already have an account? <Link to="/login" className='linktosignin' >Sign in</Link> </div>
         </div>

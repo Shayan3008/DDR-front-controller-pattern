@@ -1,0 +1,52 @@
+.Header{
+    width: auto;
+    height: 45px;
+    margin-left: 80px;
+    margin-right: 40px;
+    background-color: #ffffff;
+    border-radius: 0px 0px 25px 25px;
+    justify-content: left;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 0px 25px 25px;
+
+}
+.Headerlogo{
+    width: 60px;
+    /* height: 36.9px;  */
+    margin-left: 32px;
+    margin-top: 8px;
+}
+.Admin{
+    width: 89px;
+    /* height: 36.9px; */
+    margin-left: 935px;
+    margin-top: 7px;
+}
+
+
+
+.profilebackground{
+    position: absolute;
+    left: 85%;
+    top: 9%;
+    width: 132px;
+    height: 90px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+hr{
+    padding: 0;
+    margin: 0;
+}
+.profiledropdown{
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 10%;
+    text-decoration: none;
+    color: black;
+}
+.profiledropdown:hover{
+    background-color: #0F6AAB;
+    color: #FFFFFF;
+}
