@@ -4,6 +4,7 @@ import { FaShoppingCart, FaStream } from 'react-icons/fa'
 import { BsXLg } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { FaFirstOrder } from 'react-icons/fa'
 export default function NavBar() {
     const [expand, setexpand] = useState(false)
     const navigate = useNavigate()
@@ -15,9 +16,15 @@ export default function NavBar() {
                 <input className='border w-full p-2' placeholder='Search...' />
                 <button className=' bg-blue-400 min-w-[30px]  w-5'><FaSearch color='white' size={10} className=' m-auto ' /></button>
             </div>
-            <FaShoppingCart size={25} className='cursor-pointer' onClick = {()=>{
-                navigate('/cart')
-            }} />
+            <div className='flex'>
+                <FaShoppingCart size={25} className='cursor-pointer' onClick={() => {
+                    navigate('/cart')
+                }} />
+                <FaFirstOrder size={25} className='cursor-pointer ml-2 ' onClick={() => {
+                    navigate('/order')
+                }} />
+            </div>
+
         </nav>
 
 

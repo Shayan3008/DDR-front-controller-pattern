@@ -20,8 +20,14 @@ const deleteFromCart = (itemId: number) => {
     }
 }
 
+const emptyCart = () => {
+    return {
+        type: CART_ACTIONS.EMPTY
+    }
+}
+
 const increaseCountInCart = (itemId: number, newCount: number) => {
-    console.log('Count', newCount)
+    // console.log('Count', newCount)
     if (newCount === 0)
         return {
             type: CART_ACTIONS.DELETE,
@@ -36,4 +42,4 @@ const increaseCountInCart = (itemId: number, newCount: number) => {
     }
 }
 
-export { addItemToCart, deleteFromCart, increaseCountInCart, CART_ACTIONS }
+export { addItemToCart, deleteFromCart, increaseCountInCart, CART_ACTIONS, emptyCart }

@@ -27,17 +27,29 @@ const login = async (req, res) => {
    //    res.status(400).end()
    // }
    const { user, pass } = req.body
+   let auth = false
+   let data1 = []
+   let id;
    json.readFile('./static/user.json', (err, data) => {
-      let data1 = []
+
       if (data) {
          data1 = JSON.parse(data)
+         console.log(data1.length)
          for (var i = 0; i < data1.length; i++) {
-            if (data1[i].name === user && data1[i].password === pass)
-               res.status(200).send(data1[i].id)
+            console.log(data1[i])
+            if (data1[i].name === user && data1[i].password === pass) {
+               console.log('HELLO WORLD')
+               auth = true
+               id = data1[i].id
+               break
+            }
          }
+         console.log(auth)
+         if (auth) res.send({
+            id: id
+         })
       }
    })
-   res.status(404).send('Failed')
 
 }
 
@@ -68,16 +80,19 @@ const signUp = async (req, res) => {
       // res.send(json)
       json.readFile('./static/user.json', (err, data) => {
          let data1 = []
+         var id
          if (data)
             data1 = JSON.parse(data)
          if (data1.length === 0)
-            req.body.id = 1
+            id = 1
          else
-            req.body.id = data1[data1.length - 1].id + 1
-         console.log(req.body)
+            id = data1[data1.length - 1].id + 1
+         req.body.id = id
          data1.push(req.body)
          json.writeFile('./static/user.json', JSON.stringify(data1), (err) => {
-            if (!err) res.send('done')
+            if (!err) res.send({
+               id: id
+            })
          })
       })
 

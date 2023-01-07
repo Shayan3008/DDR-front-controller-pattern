@@ -42,8 +42,10 @@ export default function Login() {
         }
         const user = new User(userName, email, Password, phone)
         const response = await user.userSignup()
-        if (response === 'sucess')
+        if (response !== '') {
+            localStorage.setItem('userId', response)
             history('/item')
+        }
 
     }
     return (

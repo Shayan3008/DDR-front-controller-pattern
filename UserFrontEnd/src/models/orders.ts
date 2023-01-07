@@ -21,6 +21,18 @@ class Order {
             return 'sucess'
         return ''
     }
+
+    static async getOrders(userId: string): Promise<any> {
+        const response = await fetch(process.env.REACT_APP_API_URL + `order/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        const body = await response.json()
+        // console.log(body.order)
+        return body
+    }
 }
 
 export { Order }

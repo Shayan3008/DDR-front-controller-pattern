@@ -18,12 +18,13 @@ class User {
                 'Content-Type': 'application/json'
             },
         })
+        const body = await response.json()
         if (response.status === 200)
-            return 'sucess'
+            return body.id
         return ''
     }
     static async userLogin(userName: string, Password: string): Promise<string> {
-        const response = await fetch(process.env.REACT_APP_API_URL + 'login/signup', {
+        const response = await fetch(process.env.REACT_APP_API_URL + 'login', {
             method: 'POST',
             body: JSON.stringify({
                 user: userName,
@@ -33,10 +34,10 @@ class User {
                 'Content-Type': 'application/json'
             },
         })
-        const body = await response.text()
+        const body = await response.json()
         console.log(body)
         if (response.status === 200)
-            return 'sucess'
+            return body.id
         return ''
     }
 }

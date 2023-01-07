@@ -15,10 +15,12 @@ import ItemScreen from './components/ItemScreen';
 import Appcontext from './context/Appcontext';
 import CartProvide from './context/cartProvide';
 import AllReducers from './redux/Reducers';
-import { createStore, } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import Cart from './components/Cart';
-const store = createStore(AllReducers)
+import Order from './components/Order';
+import thunk from "redux-thunk";
+const store = createStore(AllReducers,applyMiddleware())
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
@@ -31,6 +33,7 @@ root.render(
               <Route path='/signup' element={<Signup />} />
               <Route path='/item' element={<ItemScreen />} />
               <Route path='/cart' element={<Cart />} />
+              <Route path='/order' element={<Order />} />
             </Routes>
           </BrowserRouter>
         </CartProvide>

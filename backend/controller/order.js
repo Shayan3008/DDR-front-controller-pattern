@@ -2,7 +2,8 @@ const oracle = require('../DATABASE/oraclequery')
 const connection = require('../DATABASE/oracleConnection')
 const order = require('../backend_models/order')
 const item = require('../backend_models/item')
-
+const json = require('jsonfile')
+const file = require('fs')
 var months = [undefined, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const orderPlace = async (req, res) => {
     // let orderId2
@@ -47,21 +48,58 @@ const orderPlace = async (req, res) => {
     //     console.log(error)
     //     res.status(400).json({ "response": sucess })
     // }
-    console.log(req)
+    json.readFile('./static/order.json', (err, data) => {
+        let data1 = []
+        var jsonObject = {}
+        if (data) {
+            data1.push(JSON.parse(data))
+            jsonObject = {
+                order: data1.order.push(req.body),
+                userId: req.params['user'],
+                id: data1.length === 0 ? 1 : data1[data1.length - 1].id + 1
+            }
+
+        }
+        else {
+            temp = []
+            temp.push(req.body)
+            jsonObject = {
+                order: temp,
+                userId: req.params['user'],
+                id: data1.length === 0 ? 1 : data1[data1.length - 1].id + 1
+            }
+        }
+        data1.push(jsonObject)
+        json.writeFile('./static/order.json', JSON.stringify(data1), (err) => {
+            if (!err) res.send('done')
+        })
+    })
 }
 
 const getAllOrders = async (req, res) => {
-    try {
-        let temp = []
-        const query = await connection()
-        const success = await query.execute('SELECT * FROM ORDERS where USERID = :id', { id: req.params['user'] })
-        for (var i = 0; i < success.rows.length; i++)
-            temp.push(new order(success.rows[i][0], success.rows[i][1], success.rows[i][2], success.rows[i][3]))
-        const json = JSON.stringify(temp)
-        res.status(200).send(json)
-    } catch (error) {
-        res.status(400).send(error)
-    }
+    // try {
+    //     let temp = []
+    //     const query = await connection()
+    //     const success = await query.execute('SELECT * FROM ORDERS where USERID = :id', { id: req.params['user'] })
+    //     for (var i = 0; i < success.rows.length; i++)
+    //         temp.push(new order(success.rows[i][0], success.rows[i][1], success.rows[i][2], success.rows[i][3]))
+    //     const json = JSON.stringify(temp)
+    //     res.status(200).send(json)
+    // } catch (error) {
+    //     res.status(400).send(error)
+    // }
+    json.readFile('./static/order.json', (err, data) => {
+        let data1 = []
+        let result = []
+        if (data)
+            data1 = JSON.parse(data)
+        for (var i = 0; i < data1.length; i++) {
+            if (data1[i].userId === req.params['user']) {
+                result.push(data1[i])
+            }
+        }
+        res.send({ order: result})
+    })
 
 }
 

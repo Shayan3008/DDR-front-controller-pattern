@@ -29,10 +29,9 @@ export default function Login() {
     const Login = async (e: any) => {
         if (userName.length === 0 || Password.length === 0) return;
         var response: string = await User.userLogin(userName, Password)
-        if (response === 'sucess') {
-            localStorage.setItem('userId', '1')
-            navigate('/item')
-        }
+
+        localStorage.setItem('userId', response)
+        navigate('/item')
     }
     return (
         <div className='h-screen'>

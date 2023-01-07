@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NavBar from './NavBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { item } from '../models/item'
-import { increaseCountInCart } from '../redux/Actions/CartActions'
+import { increaseCountInCart, emptyCart } from '../redux/Actions/CartActions'
 import Loader from './Loader'
 import { Order } from '../models/orders'
 export default function Cart() {
@@ -27,7 +27,7 @@ export default function Cart() {
                         </div>
                         <input type={'number'} className='border text-center max-w-[80px] ' value={e.count} onChange={(event: any) => {
                             dispatch(increaseCountInCart(e.id, parseInt(event.target.value)))
-                            console.log(cart)
+                            // console.log(cart)
                         }} />
                         <p className='text-xl m-0 '>${e.price}</p >
                     </div>)}
@@ -50,8 +50,11 @@ export default function Cart() {
                         {selector.CartReducer.item.length > 0 ? <div className='w-full flex justify-end'>
                             <div className=' max-w-[100%] w-[300px] mt-4 flex justify-end'>
                                 <button onClick={async (e) => {
-                                    setLoading(!Loading)
-                                    Order.placeOrder(cart.item,'1')
+                                    setLoading(true)
+                                    await Order.placeOrder(cart.item, '1')
+                                    setLoading(false)
+                                    alert('Order Placed')
+                                    dispatch(emptyCart())
 
                                 }} className='bg-blue-400  w-full text-white font-bold text-base rounded mt-2 p-2'>{Loading ? <Loader /> : 'Place Order'}</button>
                             </div>
