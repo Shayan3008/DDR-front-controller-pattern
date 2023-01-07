@@ -5,27 +5,51 @@ const users = require('../backend_models/user')
 const json = require('jsonfile')
 const file = require('fs')
 const login = async (req, res) => {
-   try {
-      const { user, pass } = req.body
-      const query = await connection()
-      const success2 = await query.execute('SELECT * FROM USERS WHERE EMAIL = :email AND PASSWORD = :pass', {
-         email: user,
-         pass: pass
-      })
-      let temp = []
-      if (success2.rows.length == 0)
-         res.status(404).send({ 'msg': "NO USER AVAILABLE" })
-      else {
-         for (var i in success2.rows)
-            temp.push(new users(success2.rows[i][0], success2.rows[i][1], success2.rows[i][2], success2.rows[i][3], success2.rows[i][4], success2[i][5]))
+   // try {
+   //    const { user, pass } = req.body
+   //    const query = await connection()
+   //    const success2 = await query.execute('SELECT * FROM USERS WHERE EMAIL = :email AND PASSWORD = :pass', {
+   //       email: user,
+   //       pass: pass
+   //    })
+   //    let temp = []
+   //    if (success2.rows.length == 0)
+   //       res.status(404).send({ 'msg': "NO USER AVAILABLE" })
+   //    else {
+   //       for (var i in success2.rows)
+   //          temp.push(new users(success2.rows[i][0], success2.rows[i][1], success2.rows[i][2], success2.rows[i][3], success2.rows[i][4], success2[i][5]))
 
-         res.status(200).send(JSON.stringify(temp))
+   //       res.status(200).send(JSON.stringify(temp))
+   //    }
+
+   // } catch (error) {
+   //    console.log(error)
+   //    res.status(400).end()
+   // }
+   const { user, pass } = req.body
+   let auth = false
+   let data1 = []
+   let id;
+   json.readFile('./static/user.json', (err, data) => {
+
+      if (data) {
+         data1 = JSON.parse(data)
+         console.log(data1.length)
+         for (var i = 0; i < data1.length; i++) {
+            console.log(data1[i])
+            if (data1[i].name === user && data1[i].password === pass) {
+               console.log('HELLO WORLD')
+               auth = true
+               id = data1[i].id
+               break
+            }
+         }
+         console.log(auth)
+         if (auth) res.send({
+            id: id
+         })
       }
-
-   } catch (error) {
-      console.log(error)
-      res.status(400).end()
-   }
+   })
 
 }
 
@@ -56,12 +80,19 @@ const signUp = async (req, res) => {
       // res.send(json)
       json.readFile('./static/user.json', (err, data) => {
          let data1 = []
+         var id
          if (data)
             data1 = JSON.parse(data)
-         console.log(req.body)
+         if (data1.length === 0)
+            id = 1
+         else
+            id = data1[data1.length - 1].id + 1
+         req.body.id = id
          data1.push(req.body)
          json.writeFile('./static/user.json', JSON.stringify(data1), (err) => {
-            if (!err) res.send(data1)
+            if (!err) res.send({
+               id: id
+            })
          })
       })
 

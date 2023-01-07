@@ -1,15 +1,19 @@
 const oracle = require('../DATABASE/oraclequery')
 const connection = require('../DATABASE/oracleConnection')
 const item = require('../backend_models/item')
-
+const file = require('fs')
 const getItem = async (req, res) => {
     try {
-        const temp = []
-        const sucess = await oracle("SELECT * FROM PRODUCT")
-        for (var i in sucess.rows)
-            temp.push(new item(sucess.rows[i][0], sucess.rows[i][1], sucess.rows[i][2], sucess.rows[i][3], sucess.rows[i][4], 1, sucess.rows[i][5]))
-        const json = JSON.stringify(temp)
-        res.send(json)
+        // const temp = []
+        // const sucess = await oracle("SELECT * FROM PRODUCT")
+        // for (var i in sucess.rows)
+        //     temp.push(new item(sucess.rows[i][0], sucess.rows[i][1], sucess.rows[i][2], sucess.rows[i][3], sucess.rows[i][4], 1, sucess.rows[i][5]))
+        // const json = JSON.stringify(temp)
+        // res.send(json)item(1, 'boot', 1, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80', 200, 1, 'This is boot', true), new item(3, 'boot', 1, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80', 200, 1, 'This is boot', false)
+        const json = file.readFile('./static/item.json', (err, data) => {
+            if (data)
+                res.send(JSON.parse(data))
+        })
     } catch (error) {
         console.log(error)
         res.status(400)
