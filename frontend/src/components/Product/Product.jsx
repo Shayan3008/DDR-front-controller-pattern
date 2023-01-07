@@ -1,10 +1,9 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import Button from '@mui/material/Button';
-import Table from "../Table/Table.jsx";
-// import Button from 'react-bootstrap/Button';
-// import { Button } from 'react-responsive-button';
 import './Product.css'
+import ProductTables from './ProductTables.jsx';
+import Table from "../Table/Table.jsx";
 import  { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes  from 'prop-types'
@@ -13,109 +12,141 @@ import Header from '../Header/Header.jsx';
 
 
 export default function Product(props) {
-  // const edit= <Fab size="small" color="secondary" aria-label="add"> <AddIcon /></Fab>
-  const[modal,setmodal]=useState(false)
-  const theadData = ["Ads No.", "Ads Shop", "Ads Category", "Instructions", "View Ads", "Actions"];
-    const tbodyData = [
-        {
-            id: "1",
-            items: ["1", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "2",
-            items: ["2", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "3",
-            items: ["3", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "4",
-            items: ["4", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "5",
-            items: ["5", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "6",
-            items: ["6", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "7",
-            items: ["7", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "8",
-            items: ["8", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "9",
-            items: ["9", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "10",
-            items: ["10", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-    ];
-    
+    const[modal,setmodal]=useState(false)
+    const[toggle,settoggle]=useState(false)
+  const [data, setData] = useState([{
+    "item_id":1,
+    "cat_id":"1",
+    "name":"bottle",
+    "description":"bottle description",
+    "image":"www.bottle.com",
+    "price":"500",
+    "count":"1"
+},{
+  "item_id":2,
+    "cat_id":"2",
+    "name":"bag",
+    "description":"bag description",
+    "image":"www.bag.com",
+    "price":"1000",
+    "count":"10"
+}])
+const handleSubmit = (e) => {
+  const formData = new FormData(e.currentTarget)
+  e.preventDefault();
+const temp =data[data.length-1].no
+let results = {'no':temp+1}
+
+
+
+  for( let [key, value] of formData.entries()){
+
+//  results.push({
+//       key: key,
+//       value:value
+//     })
+results[key]=value
+  }
+
+//  results.no=data[-1].no+1   
+let temp2= data
+temp2.push(results)
+
+setData(temp2);
+console.log(temp2)
+console.log(data)
+settoggle(true)
+setmodal(!modal)
+}
   return (
-    <div>
+    <div >
       <Header/>
-       <Navmenu/>
+       {/* <Navmenu/> */}
       <div className="ProductText">
         <h3>{props.title}</h3>
-        
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add New Ads
+              Add Product
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                          Item Id
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Shop Name'
+                        placeholder='Enter Item Id'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                          Category Id
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Category Id'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Instruction
+                          Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Instruction'
+                        placeholder='Enter Name'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          View Ads
+                          Description
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads'
+                        placeholder='Enter Description'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Image
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Image'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Price
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Price'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Count
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Count'
                         name='oldPassword'>
                         </input>
                       </div>
@@ -128,43 +159,16 @@ export default function Product(props) {
             </ModalBody>
             
           </Modal>
-          
-          <input className='search' type="search" placeholder='search'/>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
+          {/* <input className='search' type="search" placeholder='search'/> */}
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Product</button>
+          <div className="space"></div>
         </div>
-        
+        <ProductTables data={data}/>
       </div>
-      {/* <div className='Tablebackground'></div> */}
-      <div  className='ui'>
+      {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />
-      </div>
-
+      </div> */}
+     
     </div>
   )
 }
-
-
-
-// import React, { Component } from 'react';
-// import Header from '../Header/Header.jsx';
-// import Navmenu from '../Navmenu/Navmenu.jsx';
-// import { Link } from "react-router-dom";
-// import PropTypes  from 'prop-types'
-// class Product {
-//   render() {
-//     return (
-//       <div>
-//         <Header />
-//         <Navmenu />
-//         <div className="ProductText">
-//         <h3>{props.title}</h3>
-//         <input className='search' type="search" placeholder='search'/>
-//         {/* <button className='Adsbutton'>Add Ads</button> */}
-//         <span>New Ads</span>
-//       </div>
-//       </div>
-//     );
-//   }
-// }
- 
-// export default App;

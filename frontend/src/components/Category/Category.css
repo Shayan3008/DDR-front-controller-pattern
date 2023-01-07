@@ -3,60 +3,61 @@
     margin-top: 13px;
     
 }
-* body{
-    background-color: #F2F8FF;
-}
 .Category{
 background-color: #F2F8FF
 }
-/* .Tablebackground{
+.space{
+    margin-bottom: 15px;
+}
+.search{
+    box-sizing: border-box;
     position: absolute;
-    height: 370px;
-    left: 78px;
-    right: 65px;
-    top: 148px;
+    left: 21%;
+    right: 53%;
+    top: 63px;
+    bottom: 84%;
+
     background: #FFFFFF;
-    border-radius: 10px;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-} */
+    border: 1px solid #0F6AAB;
+    border-radius: 5px;
+}
+.Adsbutton{
+    /* display: flex; */
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 8px 16px; */
+    gap: 4px;
+    color: #FFFFFF;
+
+    position: absolute;
+    width: 119px;
+    height: 40px;
+    /* left: 1734px;
+    top: 108px; */
+
+    background: #0F6AAB;
+    border-radius: 4px #0F6AAB;
+}
 .ui{
     position: absolute ;
     left:100px;
     top:160px;
 
 }
-
-.search{
-    /* box-sizing: border-box; */
-    /* position: absolute; */
-    left: 24%;
-    right: 49%;
-    background: #FFFFFF;
-    border: 2px solid #0F6AAB;
-    border-radius: 5px;
-}
-/* .btn{
-    position: relative;
-    width: 119px;
-    height: 40px;
-    background: #0F6AAB;
-} */
-/* span{
+/* span {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 8px 16px;
-    gap: 4px;
+    padding: 16px 5px;
+    gap: 9px;
     color: #FFFFFF;
-
-    position: absolute;
-    width: 93px;
-    height: 32px;
-    left: 1129px;
-    top: 58px;
-    
-
+    position: relative;
+    width: 108px;
+    width: 92px;
+    left: 1022px;
+    top: -40px;
     background: #0F6AAB;
     border-radius: 4px;
     cursor: pointer;
