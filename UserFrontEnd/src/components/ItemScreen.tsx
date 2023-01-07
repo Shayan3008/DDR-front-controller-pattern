@@ -18,11 +18,15 @@ export default function ItemScreen() {
     const arr = useContext(appState)
     const [category, setCategory] = useState<Category[]>([])
     useEffect(() => {
-        Category.getData().then((res: Category[]) => !res ? setCategory([]) : setCategory(res))
-        item.getItems().then((res: item[]) => {
+        selector.FrontControllerReducer.frontController.handleRequest('Category').then((res: Category[]) => { 
+            console.log(res)
+            !res ? setCategory([]) : setCategory(res) })
+        selector.FrontControllerReducer.frontController.handleRequest('Item').then((res: item[]) => {
             if (res)
                 dispatch(getItems(res))
         })
+        // Category.getData().then((res: Category[]) => !res ? setCategory([]) : setCategory(res))
+        // item.getItems().then()
     }, [])
 
     return (
@@ -31,7 +35,7 @@ export default function ItemScreen() {
             <div className='bg-gray-50 w-screen min-h-[80px] '>
                 <div className=' w-10/12 pt-6 m-auto flex flex-col justify-center '>
                     <h1 className='text-2xl'>Category Product</h1>
-                    
+
 
                 </div>
             </div>

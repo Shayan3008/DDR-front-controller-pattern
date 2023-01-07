@@ -6,9 +6,22 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemToCart } from '../redux/Actions/CartActions'
 import { User } from '../models/user'
+import { addRequestToFrontController } from '../redux/Actions/FrontControllerActions'
+import { CategoryRequestHandler } from '../FrontController/CategoryRequestHandler'
+import { ItemRequestHandler } from '../FrontController/ItemRequestHandler'
+import { OrderRequestHandler } from '../FrontController/OrderRequestHandler'
 const Background = require('../assets/bg-shop.png')
 
 export default function Login() {
+    const dispatch = useDispatch()
+    const selector = useSelector(state => state)
+    useEffect(() => {
+        dispatch(addRequestToFrontController('Category', new CategoryRequestHandler()))
+        dispatch(addRequestToFrontController('Item', new ItemRequestHandler()))
+        dispatch(addRequestToFrontController('Order', new OrderRequestHandler()))
+        console.log(selector)
+    }, [])
+
     // const [icon, seticon] = useState(true)
     const [userName, setUserName] = useState<string>('')
     const [Password, setPassword] = useState<string>('')

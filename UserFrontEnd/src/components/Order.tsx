@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { item } from '../models/item'
 import { Order } from '../models/orders'
 import NavBar from './NavBar'
 export default function OrderScreen() {
     const [OrderItemList, setOrderItemList] = useState([])
     const [OrderItem, setOrderItem] = useState([])
+    const selector: any = useSelector(state => state)
     useEffect(() => {
-        const userId = localStorage.getItem('userId')!
-        Order.getOrders(userId).then((e) => {
+        console.log(selector)
+        selector.FrontControllerReducer.frontController.handleRequest('Order').then((e: any) => {
             // console.log(e)
             setOrderItemList(e)
             setOrderItem(e.order)
