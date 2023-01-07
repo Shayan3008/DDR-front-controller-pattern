@@ -17,18 +17,24 @@ export default function User(props) {
   const[toggle,settoggle]=useState(false)
   const [data, setData] = useState([{
     "user_id":1,
-    "name":"fahad",
-    "password":"fahad123",
-    "email":"fahad@gmail.com",
-    "phone":"+92031234567",
+    "name":"shayan",
+    "password":"123",
+    "email":"shayanjawed4@gmail.com",
+    "phone":"03241804098",
 
     
 },{
   "user_id":2,
-    "name":"faruhk",
-    "password":"faruhk123",
-    "email":"faruhk@gmail.com",
-    "phone":"+92031234567",
+    "name":"hunzalah",
+    "password":"123",
+    "email":"hunzalah@gmail.com",
+    "phone":"03131245231",
+},{
+  "user_id":3,
+    "name":"sohaib",
+    "password":"123",
+    "email":"sohaib@gmail.com",
+    "phone":"03131257231",
 }])
   
   const handleSubmit = (e) => {

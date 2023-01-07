@@ -17,19 +17,11 @@ export default function Product(props) {
   const [data, setData] = useState([{
     "item_id":1,
     "cat_id":"1",
-    "name":"bottle",
-    "description":"bottle description",
+    "name":"boot",
+    "description":"This is boot",
     "image":"www.bottle.com",
-    "price":"500",
-    "count":"1"
-},{
-  "item_id":2,
-    "cat_id":"2",
-    "name":"bag",
-    "description":"bag description",
-    "image":"www.bag.com",
-    "price":"1000",
-    "count":"10"
+    "price":"200",
+    "count":"true"
 }])
 const handleSubmit = (e) => {
   const formData = new FormData(e.currentTarget)

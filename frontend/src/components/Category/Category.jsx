@@ -16,11 +16,11 @@ export default function Category(props) {
   const[toggle,settoggle]=useState(false);
   const [data, setData] = useState([{
     "cat_id":1,
-    "cat_name":"Men Product",
+    "cat_name":"SHOE",
     
 },{
   "cat_id":2,
-  "cat_name":"Women Product",
+  "cat_name":"SHOE",
   
 }])
 const handleSubmit = (e) => {
