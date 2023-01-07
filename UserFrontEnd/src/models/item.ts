@@ -18,6 +18,11 @@ class item {
         this.description = description
         this.favourite = favourite
     }
+    static async getItems(): Promise<any> {
+        const response = await fetch(process.env.REACT_APP_API_URL+"item")
+        const data = response.json()
+        return data
+    }
 }
 
 export { item }

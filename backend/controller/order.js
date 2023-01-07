@@ -51,24 +51,16 @@ const orderPlace = async (req, res) => {
     json.readFile('./static/order.json', (err, data) => {
         let data1 = []
         var jsonObject = {}
-        if (data) {
-            data1.push(JSON.parse(data))
-            jsonObject = {
-                order: data1.order.push(req.body),
-                userId: req.params['user'],
-                id: data1.length === 0 ? 1 : data1[data1.length - 1].id + 1
-            }
+        console.log(req.body)
+        if (data)
+            data1 = JSON.parse(data)
+        jsonObject = {
+            order: req.body,
+            userId: req.params['user'],
+            id: data1.length === 0 ? 1 : data1[data1.length - 1].id + 1
+        }
 
-        }
-        else {
-            temp = []
-            temp.push(req.body)
-            jsonObject = {
-                order: temp,
-                userId: req.params['user'],
-                id: data1.length === 0 ? 1 : data1[data1.length - 1].id + 1
-            }
-        }
+
         data1.push(jsonObject)
         json.writeFile('./static/order.json', JSON.stringify(data1), (err) => {
             if (!err) res.send('done')
@@ -98,7 +90,7 @@ const getAllOrders = async (req, res) => {
                 result.push(data1[i])
             }
         }
-        res.send({ order: result})
+        res.send({ order: result })
     })
 
 }

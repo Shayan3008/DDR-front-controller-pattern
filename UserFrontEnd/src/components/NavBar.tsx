@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import React from 'react'
-import { FaShoppingCart, FaStream } from 'react-icons/fa'
+import { FaShoppingCart, FaFirstOrder, FaHome, FaDoorClosed } from 'react-icons/fa'
 import { BsXLg } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { FaFirstOrder } from 'react-icons/fa'
 export default function NavBar() {
     const [expand, setexpand] = useState(false)
     const navigate = useNavigate()
@@ -22,6 +21,13 @@ export default function NavBar() {
                 }} />
                 <FaFirstOrder size={25} className='cursor-pointer ml-2 ' onClick={() => {
                     navigate('/order')
+                }} />
+                <FaHome size={25} className='cursor-pointer ml-2' onClick={() => {
+                    navigate('/item')
+                }} />
+                <FaDoorClosed size={25} className='cursor-pointer ml-2' onClick={() => {
+                    localStorage.removeItem('userId')
+                    navigate('/')
                 }} />
             </div>
 

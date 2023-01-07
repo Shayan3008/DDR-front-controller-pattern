@@ -14,7 +14,7 @@ const ItemReducer = (state: initialState = init
     , action: any) => {
     switch (action.type) {
         case ITEM_ACTIONS.GET:
-            return action.item
+            return { item: action.item }
         default:
             return state
     }

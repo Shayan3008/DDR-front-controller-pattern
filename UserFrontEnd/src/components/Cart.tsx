@@ -23,7 +23,7 @@ export default function Cart() {
                     </div>
                     {cart.item.map((e: item) => <div className='w-full flex justify-between items-center mt-1'>
                         <div className='flex flex-col  w-3/12'>
-                            <h2>{e.catId} </h2>
+                            <h2>{e.name} </h2>
                         </div>
                         <input type={'number'} className='border text-center max-w-[80px] ' value={e.count} onChange={(event: any) => {
                             dispatch(increaseCountInCart(e.id, parseInt(event.target.value)))

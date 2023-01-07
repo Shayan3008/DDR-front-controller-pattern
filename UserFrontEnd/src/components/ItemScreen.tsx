@@ -8,6 +8,7 @@ import DropdownComponent from './dropdown'
 import { Category } from '../models/Category'
 import CategoryList from './CategoryList'
 import { item } from '../models/item'
+import { getItems } from '../redux/Actions/itemAction'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCategory, deleteFromCategory } from '../redux/Actions/CategoryAction'
@@ -18,6 +19,10 @@ export default function ItemScreen() {
     const [category, setCategory] = useState<Category[]>([])
     useEffect(() => {
         Category.getData().then((res: Category[]) => !res ? setCategory([]) : setCategory(res))
+        item.getItems().then((res: item[]) => {
+            if (res)
+                dispatch(getItems(res))
+        })
     }, [])
 
     return (
@@ -26,17 +31,13 @@ export default function ItemScreen() {
             <div className='bg-gray-50 w-screen min-h-[80px] '>
                 <div className=' w-10/12 pt-6 m-auto flex flex-col justify-center '>
                     <h1 className='text-2xl'>Category Product</h1>
-                    <div className='flex'>
-                        <p>home / </p>
-                        <p>home / </p>
-                        <p>home</p>
-                    </div>
+                    
 
                 </div>
             </div>
             <div className='w-10/12 m-auto flex  mt-2 p-1'>
                 {/* LEFT SIDE LIST OF Categories */}
-                <CategoryList category={category} dispatch={dispatch} categoryList={selector}  />
+                <CategoryList category={category} dispatch={dispatch} categoryList={selector} />
 
                 <div className='ml-3 w-full   '>
                     {/* Upper*/}
@@ -48,7 +49,7 @@ export default function ItemScreen() {
                     </div>
                     <div className='w-full mt-1'>
                         <div className='grid grid-cols-2 gap-1   sm:grid-cols-3 m-auto  '>
-                            {arr.arr.map((e: item) => <Item selector={selector} items={e} dispatch={dispatch} favourite={e.favourite} toggleFavourite={arr.toggleFavourite} />)}
+                            {selector.ItemReducer.item.map((e: item) => <Item selector={selector} items={e} dispatch={dispatch} favourite={e.favourite} toggleFavourite={arr.toggleFavourite} />)}
                         </div>
                     </div>
 

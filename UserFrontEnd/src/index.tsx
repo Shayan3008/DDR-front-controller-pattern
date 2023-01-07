@@ -20,7 +20,7 @@ import { Provider } from 'react-redux';
 import Cart from './components/Cart';
 import Order from './components/Order';
 import thunk from "redux-thunk";
-const store = createStore(AllReducers,applyMiddleware())
+const store = createStore(AllReducers, applyMiddleware(thunk))
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
