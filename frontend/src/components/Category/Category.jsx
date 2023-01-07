@@ -1,10 +1,9 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import Button from '@mui/material/Button';
-import Table from "../Table/Table.jsx";
-// import Button from 'react-bootstrap/Button';
-// import { Button } from 'react-responsive-button';
 import './Category.css'
+import CategoryTables from './CategoryTables.jsx';
+import Table from "../Table/Table.jsx";
 import  { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes  from 'prop-types'
@@ -13,112 +12,83 @@ import Header from '../Header/Header.jsx';
 
 
 export default function Category(props) {
-  // const edit= <Fab size="small" color="secondary" aria-label="add"> <AddIcon /></Fab>
-  const[modal,setmodal]=useState(false)
-  const theadData = ["Ads No.", "Ads Shop", "Ads Category", "Instructions", "View Ads", "Actions"];
-    const tbodyData = [
-        {
-            id: "1",
-            items: ["1", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "2",
-            items: ["2", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "3",
-            items: ["3", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "4",
-            items: ["4", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "5",
-            items: ["5", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "6",
-            items: ["6", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "7",
-            items: ["7", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "8",
-            items: ["8", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "9",
-            items: ["9", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-        {
-            id: "10",
-            items: ["10", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
-        },
-    ];
+  const[modal,setmodal]=useState(false);
+  const[toggle,settoggle]=useState(false);
+  const [data, setData] = useState([{
+    "cat_id":1,
+    "cat_name":"SHOE",
     
+},{
+  "cat_id":2,
+  "cat_name":"SHOE",
+  
+}])
+const handleSubmit = (e) => {
+  const formData = new FormData(e.currentTarget)
+  e.preventDefault();
+const temp =data[data.length-1].no
+let results = {'no':temp+1}
+
+
+
+  for( let [key, value] of formData.entries()){
+
+//  results.push({
+//       key: key,
+//       value:value
+//     })
+results[key]=value
+  }
+
+//  results.no=data[-1].no+1   
+let temp2= data
+temp2.push(results)
+
+setData(temp2);
+console.log(temp2)
+console.log(data)
+settoggle(true)
+setmodal(!modal)
+}
+  
   return (
-    <div>
+    <div >
       <Header/>
        <Navmenu/>
       <div className="CategoryText">
         <h3>{props.title}</h3>
-        
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add New Ads
+              Add Category
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                          Category Id
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Shop Name'
+                        placeholder='Enter Category Id'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                        Category Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Category Name'
                         name='oldPassword'>
                         </input>
                       </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          Instruction
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Instruction'
-                        name='oldPassword'>
-                        </input>
-                      </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          View Ads
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Ads'
-                        name='oldPassword'>
-                        </input>
-                      </div>
+                      
                     </Col>
                   </Row>
                 </form> 
@@ -128,44 +98,14 @@ export default function Category(props) {
             </ModalBody>
             
           </Modal>
-          
-          <input className='search' type="search" placeholder='search'/>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
+          {/* <input className='search' type="search" placeholder='search'/> */}
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Category</button>
+          <div className="space"></div>
         </div>
-        
-      </div>
-      {/* <div className='Tablebackground'></div> */}
-      <div  className='ui'>
-            <Table theadData={theadData} tbodyData={tbodyData} />
+      <CategoryTables data={data}/>
       </div>
       
-
+     
     </div>
   )
 }
-
-
-
-// import React, { Component } from 'react';
-// import Header from '../Header/Header.jsx';
-// import Navmenu from '../Navmenu/Navmenu.jsx';
-// import { Link } from "react-router-dom";
-// import PropTypes  from 'prop-types'
-// class Category {
-//   render() {
-//     return (
-//       <div>
-//         <Header />
-//         <Navmenu />
-//         <div className="CategoryText">
-//         <h3>{props.title}</h3>
-//         <input className='search' type="search" placeholder='search'/>
-//         {/* <button className='Adsbutton'>Add Ads</button> */}
-//         <span>New Ads</span>
-//       </div>
-//       </div>
-//     );
-//   }
-// }
- 
-// export default App;

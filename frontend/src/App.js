@@ -7,12 +7,14 @@ import User from './components/User/User';
 import Product from './components/Product/Product';
 import Category from './components/Category/Category';
 import Navmenu from './components/Navmenu/Navmenu';
+import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import { Outlet } from 'react-router-dom';
 
 
 const NavLayout = () => (
   <>
+    <Navmenu />
     <Outlet />
   </>
 );
@@ -26,6 +28,7 @@ const App = () => {
               <Route path="/user" element={<User title='User'/>} />      
               <Route path="/product" element={<Product title='Product'/>} />      
               <Route path="/category" element={<Category title='Category'/>} />      
+              <Route path="/profile" element={<Profile title='Profile' />} />
           </Route>
           <Route>
               <Route path="/login" element={<Login/>} />

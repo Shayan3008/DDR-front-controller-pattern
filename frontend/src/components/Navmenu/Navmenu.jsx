@@ -3,24 +3,25 @@ import {BrowserRouter as Router, Link} from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import './Navmenu.css'
 import Logo from "../../assets/Logo.svg"
-import AdvertismentNavMenu from "../../assets/AdvertismentNavMenu.svg"
-import ShopNavMenu from "../../assets/ShopNavMenu.svg"
-import ParkingNavMenu from "../../assets/ParkingNavMenu.svg"
-import StaffNavMenu from "../../assets/StaffNavMenu.svg"
-import Entertainment from "../../assets/Entertainment.svg"
-import EmergencyNavMenu from "../../assets/EmergencyNavMenu.svg"
-import CustomerNavMenu from "../../assets/CustomerNavMenu.svg"
+import UserNavMenu from "../../assets/UserNavMenu.svg"
+import ProductNavMenu from "../../assets/ProductNavMenu.svg"
+import CategoryNavMenu from "../../assets/CategoryNavMenu.svg"
+// import AdvertismentNavMenu from "../../assets/AdvertismentNavMenu.svg"
+// import ShopNavMenu from "../../assets/ShopNavMenu.svg"
+// import ParkingNavMenu from "../../assets/ParkingNavMenu.svg"
+// import StaffNavMenu from "../../assets/StaffNavMenu.svg"
+// import Entertainment from "../../assets/Entertainment.svg"
+// import EmergencyNavMenu from "../../assets/EmergencyNavMenu.svg"
+// import CustomerNavMenu from "../../assets/CustomerNavMenu.svg"
 
 export default function Navmenu() {
   return (
       <div className='Navmenu'>
         <div className='navlink'>
-          <Link to="/advertisment" ><img className='Advertisment' id='Navmenuicon'        src={AdvertismentNavMenu} ></img></Link>
-          <Link to="/shops" ><img className='Shop' id='Navmenuicon'                src={ShopNavMenu} ></img> </Link>
-          <Link to="/parking" ><img className='Parking' id='Navmenuicon'             src={ParkingNavMenu} ></img></Link>
-          <Link to="/staff" ><img className='Staff'   id='Navmenuicon'             src={StaffNavMenu} ></img>  </Link>
-          <Link to="/entertainment" ><img className='Entertainment' id='Navmenuicon'  src={Entertainment} ></img></Link>
-          <Link to="/customer" ><img className='Customer' id='Navmenuicon' src={CustomerNavMenu} ></img></Link> 
+          <Link to="/user" ><img className='User' id='Navmenuicon'        src={UserNavMenu} ></img></Link>
+          <Link to="/product" ><img className='Product' id='Navmenuicon'                src={ProductNavMenu} ></img> </Link>
+          <Link to="/category" ><img className='Category' id='Navmenuicon'             src={CategoryNavMenu} ></img></Link>
+          
         </div>
     </div>  
   )
