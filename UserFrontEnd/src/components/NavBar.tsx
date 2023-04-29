@@ -4,16 +4,23 @@ import { FaShoppingCart, FaFirstOrder, FaHome, FaDoorClosed } from 'react-icons/
 import { BsXLg } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-export default function NavBar() {
+import Logo from "../assets/logo.jpg"
+import { SearchItem } from '../redux/Actions/itemAction'
+export default function NavBar(props: any) {
     const [expand, setexpand] = useState(false)
     const navigate = useNavigate()
+    const [Search, setSearch] = useState("")
     // const expanded = () => { setexpand(!expand) }
     return (
         <nav className='h-16 flex justify-between w-10/12 m-auto items-center '>
-            <h1 className='font-serif text-2xl m-0'>Shopping Store</h1>
+            <img src={Logo} className='h-full' />
             <div className='flex w-4/12 '>
-                <input className='border w-full p-2' placeholder='Search...' />
-                <button className=' bg-blue-400 min-w-[30px]  w-5'><FaSearch color='white' size={10} className=' m-auto ' /></button>
+                <input className='border w-full p-2' placeholder='Search...' value={Search} onChange={(e) => { setSearch(e.target.value) }} />
+                <button onClick={(e) => {
+                    console.log("DATA");
+
+                    props.dispatch(SearchItem(Search))
+                }} className=' bg-blue-400 min-w-[30px]  w-5'><FaSearch color='white' size={10} className=' m-auto ' /></button>
             </div>
             <div className='flex'>
                 <FaShoppingCart size={25} className='cursor-pointer' onClick={() => {

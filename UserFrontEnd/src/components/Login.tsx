@@ -19,7 +19,7 @@ export default function Login() {
         dispatch(addRequestToFrontController('Category', new CategoryRequestHandler()))
         dispatch(addRequestToFrontController('Item', new ItemRequestHandler()))
         dispatch(addRequestToFrontController('Order', new OrderRequestHandler()))
-        console.log(selector)
+        // console.log(selector)
     }, [])
 
     // const [icon, seticon] = useState(true)

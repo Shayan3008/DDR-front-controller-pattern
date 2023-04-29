@@ -1,16 +1,20 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
-export default function DropdownComponent() {
+import { sortItems } from '../redux/Actions/itemAction'
+export default function DropdownComponent(props: any) {
+    let sortTypes: string[] = ["Original", "Price", "Favourite"]
     return (
         <Dropdown>
-            <Dropdown.Toggle  id="dropdown-basic">
-                Latest Items
+            <Dropdown.Toggle id="dropdown-basic">
+                Sort By
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                {
+                    sortTypes.map((e: string) => <Dropdown.Item href="#" onClick={(event) => {
+                        props.dispatch(sortItems(e))
+                    }}>{e}</Dropdown.Item>)
+                }
             </Dropdown.Menu>
         </Dropdown>
     )

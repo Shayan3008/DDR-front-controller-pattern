@@ -11,7 +11,6 @@ class FrontController {
     }
     public async handleRequest(request: string): Promise<any> {
         const data: handleRequest = this.requestHandlers.get(request)!
-        console.log(data.handleRequest())
         return data.handleRequest()
     }
 }

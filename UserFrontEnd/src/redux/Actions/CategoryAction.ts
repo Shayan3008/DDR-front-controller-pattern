@@ -6,7 +6,7 @@ const CATEGORY_ACTIONS = {
 }
 
 const addItemToCategory = (category: Category) => {
-    // console.log(category)
+    console.log(category)
     return {
         type: CATEGORY_ACTIONS.ADD,
         category: category,

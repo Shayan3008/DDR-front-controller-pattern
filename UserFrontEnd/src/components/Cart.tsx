@@ -51,7 +51,7 @@ export default function Cart() {
                             <div className=' max-w-[100%] w-[300px] mt-4 flex justify-end'>
                                 <button onClick={async (e) => {
                                     setLoading(true)
-                                    await Order.placeOrder(cart.item, '1')
+                                    await Order.placeOrder(cart.item, localStorage.getItem("userId")!)
                                     setLoading(false)
                                     alert('Order Placed')
                                     dispatch(emptyCart())

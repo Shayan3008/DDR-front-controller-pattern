@@ -10,7 +10,7 @@ const initState: initialState = {
     frontController: new FrontController()
 }
 const FrontControllerReducer = (state = initState, action: any) => {
-    console.log('State ', state)
+    // console.log('State ', state)
     switch (action.type) {
         case FRONT_CONTROLLER_ACTIONS.ADD:
             // console.log('Actions',action.category)

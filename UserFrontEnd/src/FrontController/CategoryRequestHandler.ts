@@ -4,7 +4,7 @@ import { handleRequest } from "./handleRequest";
 class CategoryRequestHandler implements handleRequest {
     constructor() { }
     async handleRequest(): Promise<any> {
-        console.log('Category')
+        // console.log('Category')
         const category: Category[] = []
         // let i:number = 0
         const data = await fetch(process.env.REACT_APP_API_URL + 'category')

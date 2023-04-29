@@ -12,7 +12,7 @@ class OrderRequestHandler implements handleRequest {
             },
         })
         const body = await response.json()
-        // console.log(body.order)
+        console.log("ORDER:"+body)
         return body
     }
 }

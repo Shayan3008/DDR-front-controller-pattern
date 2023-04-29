@@ -85,6 +85,7 @@ const getAllOrders = async (req, res) => {
         let result = []
         if (data)
             data1 = JSON.parse(data)
+        console.log(data1)
         for (var i = 0; i < data1.length; i++) {
             if (data1[i].userId === req.params['user']) {
                 result.push(data1[i])

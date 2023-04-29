@@ -35,7 +35,7 @@ class User {
             },
         })
         const body = await response.json()
-        console.log(body)
+        // console.log(body)
         if (response.status === 200)
             return body.id
         return ''

@@ -1,7 +1,11 @@
+import { Category } from "../../models/Category"
 import { item } from "../../models/item"
 
 const ITEM_ACTIONS = {
     GET: 'GET_ITEMS',
+    SORT: "SORT_ITEMS",
+    GETBYCATEGORY: "GET_ITEMS_BY_CATEGORY",
+    Search: "SEARCH_ITEMS"
 }
 
 const getItems = (item: item[]) => {
@@ -12,5 +16,26 @@ const getItems = (item: item[]) => {
     }
 }
 
+const sortItems = (sortingType: string) => {
+    console.log(sortingType)
+    return {
+        type: ITEM_ACTIONS.SORT,
+        sortingType: sortingType,
+    }
+}
 
-export { getItems, ITEM_ACTIONS }
+const getItemsByCategory = (category: Category[]) => {
+    return {
+        type: ITEM_ACTIONS.GETBYCATEGORY,
+        category: category,
+    }
+}
+
+const SearchItem = (searchString: string) => {
+    return {
+        type: ITEM_ACTIONS.Search,
+        searchString: searchString,
+    }
+}
+
+export { getItems, sortItems, ITEM_ACTIONS, getItemsByCategory, SearchItem }

@@ -8,9 +8,9 @@ export default function OrderScreen() {
     const [OrderItem, setOrderItem] = useState([])
     const selector: any = useSelector(state => state)
     useEffect(() => {
-        console.log(selector)
+        // console.log(selector)
         selector.FrontControllerReducer.frontController.handleRequest('Order').then((e: any) => {
-            // console.log(e)
+            console.log(e)
             setOrderItemList(e)
             setOrderItem(e.order)
             // console.log(e.order)
